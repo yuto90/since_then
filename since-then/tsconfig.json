@@ -32,7 +32,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/views/Setting.vue"  ],
+, "src/views/Setting.vue", "src/components/Atoms/AtomButton.vue"  ],
   "exclude": [
     "node_modules"
   ]

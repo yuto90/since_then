@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     // ワイルドカード
     path: "/:pathMatch(.*)*",
-    redirect: '/',
+    redirect: "/",
   },
 ];
 
