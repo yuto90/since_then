@@ -13,6 +13,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "setting" */ "../views/Setting.vue"),
   },
+  {
+    // ワイルドカード
+    path: "/:pathMatch(.*)*",
+    redirect: '/',
+  },
 ];
 
 const router = createRouter({
