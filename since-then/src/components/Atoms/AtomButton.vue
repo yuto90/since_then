@@ -1,6 +1,6 @@
 <template>
   <div class="atom-button">
-    <button class="demo-button contained-button">Add</button>
+    <button class="material-button contained-button">Add</button>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ button {
   -webkit-appearance: none;
 }
 
-.demo-button {
+.material-button {
   font-family: sans-serif;
   font-size: 0.875rem;
   font-weight: bold;
@@ -37,7 +37,7 @@ button {
   border-radius: 4px;
 }
 
-.demo-button.contained-button {
+.material-button.contained-button {
   color: #fff;
   background-color: #42b983;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
