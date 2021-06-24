@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+  <div class="hello">
+    <h1>{{ msg }}</h1>
   </div>
 </template>
 
@@ -8,8 +8,9 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "Home",
-  components: {
+  name: "HelloWorld",
+  props: {
+    msg: String,
   },
 });
 </script>
