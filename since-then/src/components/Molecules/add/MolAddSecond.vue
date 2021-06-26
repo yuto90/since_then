@@ -1,5 +1,5 @@
 <template>
-  <div class="add-second">
+  <div class="mol-add-second">
     <h2>何があった日？</h2>
     <AtomInput type="textarea" />
     <AtomButton class="button" text="次へ" />
@@ -12,7 +12,7 @@ import AtomButton from "@/components/Atoms/AtomButton.vue";
 import AtomInput from "@/components/Atoms/AtomInput.vue";
 
 export default defineComponent({
-  name: "OrgAddSecond",
+  name: "MolAddSecond",
   components: {
     AtomButton,
     AtomInput,
