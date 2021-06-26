@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
-import Add from "../views/add/Add.vue";
-import AddFirst from "../views/add/AddFirst.vue";
+import Add from "../views/Add.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,23 +9,9 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
   {
-    path: "/add/first",
+    path: "/add",
+    name: "Add",
     component: Add,
-    children: [
-      {
-        path: "/add/first",
-        name: "first",
-        component: AddFirst,
-      },
-      {
-        path: "/add/second",
-        name: "second",
-        component: () =>
-          import(
-            /* webpackChunkName: "add" */ "../views/add/AddSecond.vue"
-          ),
-      },
-    ],
   },
   {
     path: "/setting",
