@@ -1,14 +1,40 @@
 <template>
   <div class="atom-button">
-    <button class="material-button contained-button">Add</button>
+    <button class="material-button contained-button" @click="displayAlert">{{ text }}</button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 
 export default defineComponent({
   name: "AtomButton",
+  props: {
+    text: {
+      type: String,
+      required: true,
+    }
+  },
+  setup() {
+    const state = reactive<{ messageOne: string }>({
+      messageOne: "Hello",
+      
+    });
+    const messageTwo = ref<string>("こんにちは");
+
+    const displayAlert = () => {
+      alert('ddddddddddd');
+    }
+
+
+
+    return {
+      state,
+      messageTwo,
+      displayAlert,
+    };
+  }
+  
 });
 </script>
 
@@ -29,7 +55,6 @@ button {
   font-family: sans-serif;
   font-size: 0.875rem;
   font-weight: bold;
-  text-transform: uppercase;
   height: 36px;
   min-width: 64px;
   padding: 0 16px;
