@@ -1,6 +1,8 @@
 <template>
   <div class="atom-button">
-    <button class="material-button contained-button" @click="displayAlert">{{ text }}</button>
+    <button class="material-button contained-button" @click="displayAlert">
+      {{ text }}
+    </button>
   </div>
 </template>
 
@@ -13,28 +15,25 @@ export default defineComponent({
     text: {
       type: String,
       required: true,
-    }
+      default: "ボタン",
+    },
   },
   setup() {
     const state = reactive<{ messageOne: string }>({
       messageOne: "Hello",
-      
     });
     const messageTwo = ref<string>("こんにちは");
 
     const displayAlert = () => {
-      alert('ddddddddddd');
-    }
-
-
+      alert("ddddddddddd");
+    };
 
     return {
       state,
       messageTwo,
       displayAlert,
     };
-  }
-  
+  },
 });
 </script>
 

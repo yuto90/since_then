@@ -1,7 +1,7 @@
 <template>
   <div class="add">
     <AtomInput />
-    <AtomButton />
+    <AtomButton text="追加" />
   </div>
 </template>
 
