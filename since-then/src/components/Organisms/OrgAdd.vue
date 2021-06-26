@@ -5,6 +5,7 @@
     <keep-alive>
       <component :is="state.currentView"></component>
     </keep-alive>
+    <AtomButton class="button" text="次へ" />
   </div>
 </template>
 
@@ -12,12 +13,15 @@
 import { defineComponent, reactive } from "vue";
 import MolAddFirst from "@/components/Molecules/add/MolAddFirst.vue";
 import MolAddSecond from "@/components/Molecules/add/MolAddSecond.vue";
+import AtomButton from "@/components/Atoms/AtomButton.vue";
+
 
 export default defineComponent({
   name: "MolAdd",
   components: {
     MolAddFirst,
     MolAddSecond,
+    AtomButton,
   },
   setup() {
     const state = reactive<{
