@@ -1,6 +1,6 @@
 <template>
-  <div class="atom-input">
-    <input :type="type" :placeholder="placeholder" />
+  <div class="atom-textarea">
+    <textarea :placeholder="placeholder" :cols="cols" :rows="rows" />
   </div>
 </template>
 
@@ -10,8 +10,9 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "AtomInput",
   props: {
-    type: { type: String, default: "text" },
     placeholder: { type: String },
+    cols: { type: String, default: "30" },
+    rows: { type: String, default: "7" },
   },
 });
 </script>

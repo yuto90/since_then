@@ -1,7 +1,7 @@
 <template>
   <div class="mol-add-second">
-    <h2>何があった日？</h2>
-    <AtomInput type="textarea" />
+    <h2>それは何の日？</h2>
+    <AtomInput placeholder="例：次の資格試験日" />
   </div>
 </template>
 
