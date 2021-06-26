@@ -2,7 +2,9 @@
   <div id="tpl-add">
     <a @click="first" :style="state.firstStyle">first</a> |
     <a @click="second" :style="state.secondStyle">second</a>
-    <component :is="state.currentView"></component>
+    <keep-alive>
+      <component :is="state.currentView"></component>
+    </keep-alive>
   </div>
 </template>
 
@@ -18,7 +20,11 @@ export default defineComponent({
     OrgAddSecond,
   },
   setup() {
-    const state = reactive<{ currentView: string, firstStyle: string, secondStyle: string}>({
+    const state = reactive<{
+      currentView: string;
+      firstStyle: string;
+      secondStyle: string;
+    }>({
       currentView: "OrgAddFirst",
       firstStyle: "color: #42b983",
       secondStyle: "color: #2c3e50",
