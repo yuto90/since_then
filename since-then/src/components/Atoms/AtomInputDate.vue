@@ -1,5 +1,5 @@
 <template>
-  <div class="atom-input">
+  <div class="atom-input-date">
     <input type="date" />
   </div>
 </template>
@@ -8,7 +8,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "AtomInput",
+  name: "AtomInputDate",
 });
 </script>
 

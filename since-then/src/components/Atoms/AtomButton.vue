@@ -1,6 +1,6 @@
 <template>
   <div class="atom-button">
-    <button class="material-button contained-button" @click="displayAlert">
+    <button class="material-button contained-button">
       {{ text }}
     </button>
   </div>
