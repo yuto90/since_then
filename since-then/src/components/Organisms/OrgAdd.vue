@@ -1,8 +1,8 @@
 <template>
   <div id="org-add">
-    <a @click="clickFirst" :style="state.firstStyle">First</a> ==>
-    <a @click="clickSecond" :style="state.secondStyle">Second</a> ==>
-    <a @click="clickThird" :style="state.thirdStyle">Third</a> ==>
+    <a @click="clickFirst" :style="state.firstStyle">Step1</a> ==>
+    <a @click="clickSecond" :style="state.secondStyle">Step2</a> ==>
+    <a @click="clickThird" :style="state.thirdStyle">Step3</a> ==>
     <a @click="end" :style="state.endStyle">End</a>
     <keep-alive>
       <component :is="state.currentView" />

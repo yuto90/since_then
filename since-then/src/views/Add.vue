@@ -1,17 +1,17 @@
 <template>
   <div class="add">
-    <TplAdd />
+    <OrgAdd />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import TplAdd from "@/components/Templates/TplAdd.vue";
+import OrgAdd from "@/components/Organisms/OrgAdd.vue";
 
 export default defineComponent({
   name: "Add",
   components: {
-    TplAdd,
+    OrgAdd
   },
 });
 </script>
