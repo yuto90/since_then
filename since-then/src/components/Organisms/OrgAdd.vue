@@ -13,6 +13,9 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
+import { useStore } from "vuex";
+import { key } from "@/store";
+
 import MolAddFirst from "@/components/Molecules/add/MolAddFirst.vue";
 import MolAddSecond from "@/components/Molecules/add/MolAddSecond.vue";
 import MolAddThird from "@/components/Molecules/add/MolAddThird.vue";
@@ -29,6 +32,8 @@ export default defineComponent({
     AtomButton,
   },
   setup() {
+    const store = useStore(key); // $storeではなくuseStore()で取得する
+
     const state = reactive<{
       currentView: string;
       firstStyle: string;
@@ -79,10 +84,11 @@ export default defineComponent({
       state.thirdStyle = "color: #2c3e50";
       state.endStyle = "color: #42b983";
       state.currentView = "MolAddEnd";
-        state.buttonText = "登録";
+      state.buttonText = "登録";
     };
 
     const changeStep = () => {
+      alert(store.state.count);
       if (state.currentView === "MolAddFirst") {
         state.firstStyle = "color: #2c3e50";
         state.secondStyle = "color: #42b983";

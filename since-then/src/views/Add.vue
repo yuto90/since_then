@@ -11,7 +11,7 @@ import OrgAdd from "@/components/Organisms/OrgAdd.vue";
 export default defineComponent({
   name: "Add",
   components: {
-    OrgAdd
+    OrgAdd,
   },
 });
 </script>
