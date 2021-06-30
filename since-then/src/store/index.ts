@@ -18,6 +18,12 @@ export const store = createStore<State>({
   mutations: {
     setDate(state, payload) {
       state.date = payload;
+    },
+    setTitle(state, payload) {
+      state.title = payload;
+    },
+    setMemo(state, payload) {
+      state.memo = payload;
     }
   }
 });
