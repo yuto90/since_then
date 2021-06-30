@@ -2,16 +2,14 @@
   <div class="atom-input">
     <input
       :placeholder="placeholder"
-      v-model="state.title"
-      @change="setTitle"
+      v-model="state.value"
+      @change="inputChange"
     />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
-import { useStore } from "vuex";
-import { key } from "@/store";
 
 export default defineComponent({
   name: "AtomInput",
@@ -19,19 +17,18 @@ export default defineComponent({
     placeholder: { type: String, default: "hint" },
   },
 
-  setup() {
-    const store = useStore(key);
-    const state = reactive<{ title: string }>({
-      title: "",
+  setup(props, context) {
+    const state = reactive<{ value: string }>({
+      value: "",
     });
 
-    const setTitle = () => {
-      store.commit("setTitle", state.title);
+    const inputChange = () => {
+      context.emit("emitInput", state.value);
     };
 
     return {
       state,
-      setTitle,
+      inputChange,
     };
   },
 });

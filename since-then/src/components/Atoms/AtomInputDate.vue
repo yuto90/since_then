@@ -1,30 +1,26 @@
 <template>
   <div class="atom-input-date">
-    <input type="date" v-model="state.inputDate" @change="setDate" />
+    <input type="date" v-model="state.value" @change="inputDate" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
-import { useStore } from "vuex";
-import { key } from "@/store";
 
 export default defineComponent({
   name: "AtomInputDate",
-  setup() {
-    const store = useStore(key);
-
-    const state = reactive<{ inputDate: string }>({
-      inputDate: "",
+  setup(props, context) {
+    const state = reactive<{ value: string }>({
+      value: "",
     });
 
-    const setDate = () => {
-      store.commit("setDate", state.inputDate);
+    const inputDate = (): void => {
+      context.emit("emitInputDate", state.value);
     };
 
     return {
       state,
-      setDate,
+      inputDate,
     };
   },
 });

@@ -4,37 +4,36 @@
       :placeholder="placeholder"
       :cols="cols"
       :rows="rows"
-      v-model="state.memo"
-      @change="setMemo"
+      v-model="state.value"
+      @change="inputChange"
     />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
-import { useStore } from "vuex";
-import { key } from "@/store";
 
 export default defineComponent({
-  name: "AtomInput",
+  name: "AtomTextarea",
   props: {
     placeholder: { type: String },
     cols: { type: String, default: "30" },
     rows: { type: String, default: "7" },
   },
-  setup() {
-    const store = useStore(key);
-    const state = reactive<{ memo: string }>({
-      memo: "",
+  setup(props, context) {
+    const state = reactive<{ value: string }>({
+      // v-modelによって入力される度に更新されていく
+      value: "",
     });
 
-    const setMemo = () => {
-      store.commit("setMemo", state.memo);
+    // 入力される度に値をMolAddThirdにEmitする
+    const inputChange = () => {
+      context.emit("emitTextarea", state.value);
     };
 
     return {
       state,
-      setMemo,
+      inputChange,
     };
   },
 });
