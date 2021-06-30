@@ -88,7 +88,7 @@ export default defineComponent({
     };
 
     const changeStep = () => {
-      alert(store.state.title);
+      alert(store.state.memo);
       if (state.currentView === "MolAddFirst") {
         state.firstStyle = "color: #2c3e50";
         state.secondStyle = "color: #42b983";
