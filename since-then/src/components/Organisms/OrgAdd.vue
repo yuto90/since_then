@@ -7,13 +7,14 @@
     <keep-alive>
       <component :is="state.currentView" />
     </keep-alive>
-    <AtomButton class="button" :text="state.buttonText" @click="changeStep" />
+    <AtomButton :text="state.buttonText" @click="changeStep" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
-import { useStore } from "vuex";
+import { useRouter } from 'vue-router'
+import { useStore} from "vuex";
 import { key } from "@/store";
 
 import MolAddFirst from "@/components/Molecules/add/MolAddFirst.vue";
@@ -33,6 +34,7 @@ export default defineComponent({
   },
   setup() {
     const store = useStore(key); // $storeではなくuseStore()で取得する
+    const router = useRouter(); // $routeではなくuseRouter()で取得する
 
     const state = reactive<{
       currentView: string;
@@ -103,6 +105,14 @@ export default defineComponent({
         state.endStyle = "color: #42b983";
         state.currentView = "MolAddEnd";
         state.buttonText = "登録";
+      } else if (state.currentView === "MolAddEnd") {
+        // todo 入力値をstoreから取得して登録処理
+        alert('入力値をstoreから取得して登録処理');
+
+        // Homeにリダイレクト
+        router.push('/');
+
+
       }
     };
 
