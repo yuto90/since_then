@@ -1,6 +1,6 @@
 <template>
   <div class="atom-input-date">
-    <input type="date" v-model="state.inputDate" @change="setDate"/>
+    <input type="date" v-model="state.inputDate" @change="setDate" />
   </div>
 </template>
 
@@ -15,11 +15,11 @@ export default defineComponent({
     const store = useStore(key);
 
     const state = reactive<{ inputDate: string }>({
-      inputDate: '',
+      inputDate: "",
     });
 
     const setDate = () => {
-      store.commit('setDate', state.inputDate)
+      store.commit("setDate", state.inputDate);
     };
 
     return {

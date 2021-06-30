@@ -11,7 +11,7 @@ export const key: InjectionKey<Store<State>> = Symbol(); // Stateのキーと型
 
 export const store = createStore<State>({
   state: {
-    date: '',
+    date: "",
     title: "",
     memo: "",
   },
@@ -24,6 +24,6 @@ export const store = createStore<State>({
     },
     setMemo(state, payload) {
       state.memo = payload;
-    }
-  }
+    },
+  },
 });

@@ -1,6 +1,12 @@
 <template>
   <div class="atom-textarea">
-    <textarea :placeholder="placeholder" :cols="cols" :rows="rows" v-model="state.memo" @change="setMemo"/>
+    <textarea
+      :placeholder="placeholder"
+      :cols="cols"
+      :rows="rows"
+      v-model="state.memo"
+      @change="setMemo"
+    />
   </div>
 </template>
 
@@ -23,7 +29,7 @@ export default defineComponent({
     });
 
     const setMemo = () => {
-      store.commit('setMemo', state.memo)
+      store.commit("setMemo", state.memo);
     };
 
     return {

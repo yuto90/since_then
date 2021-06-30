@@ -1,6 +1,10 @@
 <template>
   <div class="atom-input">
-    <input :placeholder="placeholder" v-model="state.title" @change="setTitle"/>
+    <input
+      :placeholder="placeholder"
+      v-model="state.title"
+      @change="setTitle"
+    />
   </div>
 </template>
 
@@ -22,7 +26,7 @@ export default defineComponent({
     });
 
     const setTitle = () => {
-      store.commit('setTitle', state.title)
+      store.commit("setTitle", state.title);
     };
 
     return {
