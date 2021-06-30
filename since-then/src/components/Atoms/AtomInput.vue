@@ -1,17 +1,26 @@
 <template>
   <div class="atom-input">
-    <input :type="type" :placeholder="placeholder" />
+    <input :placeholder="placeholder" v-model="state.value" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
 
 export default defineComponent({
   name: "AtomInput",
   props: {
-    type: { type: String, default: "text" },
-    placeholder: { type: String },
+    placeholder: { type: String, default: "hint" },
+  },
+
+  setup() {
+    const state = reactive<{ value: string }>({
+      value: "",
+    });
+
+    return {
+      state,
+    };
   },
 });
 </script>
