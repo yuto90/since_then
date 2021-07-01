@@ -13,8 +13,8 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
-import { useRouter } from 'vue-router'
-import { useStore} from "vuex";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 import { key } from "@/store";
 
 import MolAddFirst from "@/components/Molecules/add/MolAddFirst.vue";
@@ -106,13 +106,19 @@ export default defineComponent({
         state.currentView = "MolAddEnd";
         state.buttonText = "登録";
       } else if (state.currentView === "MolAddEnd") {
-        // todo 入力値をstoreから取得して登録処理
-        alert('入力値をstoreから取得して登録処理');
+        // 入力値をstoreから取得して登録処理
+        const storeInputDate: string = store.state.date;
+        const storeInputTitle: string = store.state.title;
+        const storeInputMemo: string = store.state.memo;
+
+        store.commit("setDisplay", [
+          storeInputDate,
+          storeInputTitle,
+          storeInputMemo,
+        ]);
 
         // Homeにリダイレクト
-        router.push('/');
-
-
+        router.push("/");
       }
     };
 
