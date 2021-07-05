@@ -132,3 +132,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ユーザ認証を変更
 AUTH_USER_MODEL = 'api.UserProfile'
+
+if DEBUG:
+    INSTALLED_APPS += ['corsheaders']
+    MIDDLEWARE = ['corsheaders.middleware.CorsMiddleware'] + MIDDLEWARE
+    CORS_ORIGIN_WHITELIST = (
+        'http://127.0.0.1:8080',
+        'http://localhost:8080',
+    )
