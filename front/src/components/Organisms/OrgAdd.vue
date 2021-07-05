@@ -111,7 +111,7 @@ export default defineComponent({
         const storeInputTitle: string = store.state.title;
         const storeInputMemo: string = store.state.memo;
 
-        store.commit("setDisplay", [
+        store.commit("setInputAdd", [
           storeInputDate,
           storeInputTitle,
           storeInputMemo,

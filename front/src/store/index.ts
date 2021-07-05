@@ -24,7 +24,7 @@ export const store = createStore<State>({
     drfPostDate: [],
   },
   mutations: {
-    setDisplay(state, payload: string[]) {
+    setInputAdd(state, payload: string[]) {
       state.inputAdd.push({
         inputDate: payload[0],
         inputTitle: payload[1],
