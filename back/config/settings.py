@@ -133,6 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ユーザ認証を変更
 AUTH_USER_MODEL = 'api.UserProfile'
 
+# django-cors-headers
 if DEBUG:
     INSTALLED_APPS += ['corsheaders']
     MIDDLEWARE = ['corsheaders.middleware.CorsMiddleware'] + MIDDLEWARE

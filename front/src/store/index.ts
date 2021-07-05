@@ -5,11 +5,12 @@ export interface State {
   date: string;
   title: string;
   memo: string;
-  display: {
-    displayDate: string;
-    displayTitle: string;
-    displayMemo: string;
+  inputAdd: {
+    inputDate: string;
+    inputTitle: string;
+    inputMemo: string;
   }[];
+  drfPostDate:string[],
 }
 
 export const key: InjectionKey<Store<State>> = Symbol(); // Stateのキーと型の一覧
@@ -19,14 +20,15 @@ export const store = createStore<State>({
     date: "",
     title: "",
     memo: "",
-    display: [],
+    inputAdd:[],
+    drfPostDate: [],
   },
   mutations: {
     setDisplay(state, payload: string[]) {
-      state.display.push({
-        displayDate: payload[0],
-        displayTitle: payload[1],
-        displayMemo: payload[2],
+      state.inputAdd.push({
+        inputDate: payload[0],
+        inputTitle: payload[1],
+        inputMemo: payload[2],
       });
       state.date = "";
       state.title = "";
@@ -41,5 +43,13 @@ export const store = createStore<State>({
     setMemo(state, payload) {
       state.memo = payload;
     },
+    setDrfResponcePostDate(state, payload) {
+      state.drfPostDate = payload;
+    },
   },
+  getters: {
+    getDrfPostDate():string[] {
+      return store.state.drfPostDate;
+    }
+  }
 });
