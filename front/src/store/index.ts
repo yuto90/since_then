@@ -35,13 +35,16 @@ export const store = createStore<State>({
     getDrfPostDate(): string[] {
       return store.state.drfPostDate;
     },
+    getInputDate(): Date {
+      return store.state.inputDate;
+    },
   },
   actions: {
     // 入力内容リセット用
-    resetInputValue (context, text) {
-      context.commit("setDate", new Date);
-      context.commit("setTitle", '');
-      context.commit("setMemo", '');
+    resetInputValue(context) {
+      context.commit("setDate", new Date());
+      context.commit("setTitle", "");
+      context.commit("setMemo", "");
     },
-  }
+  },
 });

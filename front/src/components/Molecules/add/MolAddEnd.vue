@@ -3,7 +3,7 @@
     <h2>この内容で登録します。よろしいですか？</h2>
     <div>
       <label>【日付】</label>
-      <p>{{ formatDate() }}</p>
+      <p>{{ formatDateToString() }}</p>
     </div>
     <div>
       <label>【タイトル】</label>
@@ -26,14 +26,24 @@ export default defineComponent({
   setup() {
     const store = useStore(key);
 
-    const formatDate = (): Date => {
+    // todo 日付フォーマット関数をhelper関数化する
+    const formatDateToString = (): string => {
+      // todo stateを直接参照せずにgettersを使う
       const date: Date = store.state.inputDate;
-      return date;
+
+      const yearStr = `${date.getFullYear()}`;
+      const monthStr = `${1 + date.getMonth()}`;
+      const dayStr = `${date.getDate()}`;
+
+      // storeに格納されているDrfPostDateを取得
+      //const date: Date = computed(() => store.getters.getInputDate);
+
+      return yearStr + "年" + monthStr + "月" + dayStr + "日";
     };
 
     return {
       store,
-      formatDate,
+      formatDateToString,
     };
   },
 });
