@@ -7,11 +7,11 @@
     </div>
     <div>
       <label>【タイトル】</label>
-      <p>{{ store.state.title }}</p>
+      <p>{{ store.state.inputTitle }}</p>
     </div>
     <div>
       <label>【メモ】</label>
-      <p>{{ store.state.memo }}</p>
+      <p>{{ store.state.inputMemo }}</p>
     </div>
   </div>
 </template>
@@ -26,12 +26,9 @@ export default defineComponent({
   setup() {
     const store = useStore(key);
 
-    const formatDate = (): string => {
-      const hyphenDate: string = store.state.date;
-      const replaceDate = hyphenDate.replace(/-/g, "/");
-      //const date = Date.parse(stringDate);
-
-      return replaceDate;
+    const formatDate = (): Date => {
+      const date: Date = store.state.inputDate;
+      return date;
     };
 
     return {

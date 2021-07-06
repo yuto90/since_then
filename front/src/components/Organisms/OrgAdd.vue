@@ -16,6 +16,7 @@ import { defineComponent, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { key } from "@/store";
+import axios from "axios";
 
 import MolAddFirst from "@/components/Molecules/add/MolAddFirst.vue";
 import MolAddSecond from "@/components/Molecules/add/MolAddSecond.vue";
@@ -89,9 +90,7 @@ export default defineComponent({
       state.buttonText = "登録";
     };
 
-    const changeStep = () => {
-      //alert(store.state.date);
-
+    const changeStep = async () => {
       if (state.currentView === "MolAddFirst") {
         state.firstStyle = "color: #2c3e50";
         state.secondStyle = "color: #42b983";
@@ -106,16 +105,23 @@ export default defineComponent({
         state.currentView = "MolAddEnd";
         state.buttonText = "登録";
       } else if (state.currentView === "MolAddEnd") {
-        // 入力値をstoreから取得して登録処理
-        const storeInputDate: string = store.state.date;
-        const storeInputTitle: string = store.state.title;
-        const storeInputMemo: string = store.state.memo;
+        // 入力値をstoreから取得
+        const inputDate: Date = store.state.inputDate;
+        const inputTitle: string = store.state.inputTitle;
+        const inputMemo: string = store.state.inputMemo;
 
-        store.commit("setInputAdd", [
-          storeInputDate,
-          storeInputTitle,
-          storeInputMemo,
-        ]);
+        // DRFと接続して登録処理
+        await axios
+          .post("http://127.0.0.1:8000/api/post_date/", {
+            date: inputDate,
+            title: inputTitle,
+            memo: inputMemo,
+          })
+          .then((response) => console.log(response.data))
+          .catch((error) => console.log(error));
+
+        // 入力内容をリセット
+        await store.dispatch("resetInputValue");
 
         // Homeにリダイレクト
         router.push("/");

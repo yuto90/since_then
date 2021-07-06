@@ -26,10 +26,10 @@ export default defineComponent({
     async function getApiResponce() {
       await axios
         .get("http://127.0.0.1:8000/api/post_date") // GET post_date一覧取得
-        .then((response) => (
+        .then((response) =>
           store.commit("setDrfResponcePostDate", response.data)
-        ))
-        .catch(error => console.log(error));
+        )
+        .catch((error) => console.log(error));
     }
 
     onMounted(() => {
