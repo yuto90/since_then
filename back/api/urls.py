@@ -7,9 +7,9 @@ router = DefaultRouter()
 router.register('profile', views.UserProfileViewSet)
 
 urlpatterns = [
-    # ブログ一覧取得用
+    # 一覧取得, 登録用
     path('post_date/', views.PostDateView.as_view(), name='post_date'),
-    # ブログ詳細取得用
+    # 詳細取得用
     path('post_date/<str:pk>/', views.PostDateDetailView.as_view(),
          name='post_date_detail'),
     # router接続用

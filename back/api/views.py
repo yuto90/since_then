@@ -4,8 +4,8 @@ from rest_framework import generics
 from rest_framework import viewsets
 
 
-# ListAPIView メソッド：GET 一覧取得
-class PostDateView(generics.ListAPIView):
+# ListCreateAPIView メソッド：GET, POST
+class PostDateView(generics.ListCreateAPIView):
     queryset = PostDate.objects.all()
     serializer_class = serializers.PostDateSerializer
 
