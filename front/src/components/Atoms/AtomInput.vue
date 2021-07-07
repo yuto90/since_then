@@ -2,6 +2,7 @@
   <div class="atom-input">
     <input
       :placeholder="placeholder"
+      :size='size'
       v-model="state.value"
       @change="inputChange"
     />
@@ -15,8 +16,8 @@ export default defineComponent({
   name: "AtomInput",
   props: {
     placeholder: { type: String, default: "hint" },
+    size: { type: String, default: "30" },
   },
-
   setup(props, context) {
     const state = reactive<{ value: string }>({
       value: "",
