@@ -14,14 +14,24 @@
           <td>【日付】</td>
           <td align="left">{{ formatDateToString() }}</td>
         </tr>
+
         <tr>
           <td>【タイトル】</td>
-          <td align="left">{{ store.state.inputTitle }}</td>
+          <td v-if="store.state.inputTitle !== ''" align="left">
+            {{ store.state.inputTitle }}
+          </td>
+          <td v-else class="validate" align="left">
+            ※この項目は必須です。
+          </td>
         </tr>
+
         <tr>
           <td>【メモ】</td>
-          <td align="left">{{ store.state.inputMemo }}</td>
+          <td align="left">
+            {{ store.state.inputMemo }}
+          </td>
         </tr>
+
       </tbody>
     </table>
 
@@ -75,7 +85,7 @@ table {
   width: 30%; /* テーブルのセル幅固定 */
   margin-left: auto;
   margin-right: auto;
-  border: 3px solid #42b983;
+  //border: 3px solid #42b983;
 }
 
 table td {
