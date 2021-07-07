@@ -7,7 +7,7 @@
     <keep-alive>
       <component :is="state.currentView" />
     </keep-alive>
-    <AtomButton :text="state.buttonText" @click="changeStep" />
+    <AtomButton :text="state.buttonText" @click="changeStep" style="padding-top:30px;" />
   </div>
 </template>
 
