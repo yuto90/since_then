@@ -2,7 +2,7 @@ import { InjectionKey } from "vue";
 import { createStore, Store } from "vuex";
 
 export interface State {
-  inputDate: Date;
+  inputDate: string;
   inputTitle: string;
   inputMemo: string;
   drfPostDate: string[];
@@ -12,7 +12,7 @@ export const key: InjectionKey<Store<State>> = Symbol(); // Stateのキーと型
 
 export const store = createStore<State>({
   state: {
-    inputDate: new Date(),
+    inputDate: "",
     inputTitle: "",
     inputMemo: "",
     drfPostDate: [],
@@ -35,7 +35,7 @@ export const store = createStore<State>({
     getDrfPostDate(state): string[] {
       return state.drfPostDate;
     },
-    getInputDate(state): Date {
+    getInputDate(state): string {
       return state.inputDate;
     },
     getInputTitle(state): string {
@@ -48,7 +48,7 @@ export const store = createStore<State>({
   actions: {
     // 入力内容リセット用
     resetInputValue(context) {
-      context.commit("setDate", new Date());
+      context.commit("setDate", "");
       context.commit("setTitle", "");
       context.commit("setMemo", "");
     },

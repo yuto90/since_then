@@ -94,33 +94,38 @@ export default defineComponent({
     };
 
     const changeStep = async () => {
+      // storeから入力情報を取得
+      const inputDate: string = store.getters.getInputDate;
+      const inputTitle: string = store.getters.getInputTitle;
+      const inputMemo: string = store.getters.getInputMemo;
+
       if (state.currentView === "MolAddFirst") {
+        state.disabled = false;
         state.firstStyle = "color: #2c3e50";
         state.secondStyle = "color: #42b983";
         state.currentView = "MolAddSecond";
       } else if (state.currentView === "MolAddSecond") {
+        state.disabled = false;
         state.secondStyle = "color: #2c3e50";
         state.thirdStyle = "color: #42b983";
         state.currentView = "MolAddThird";
       } else if (state.currentView === "MolAddThird") {
-        // storeから入力情報を取得
-        const inputDate: Date = store.getters.getInputDate;
-        const inputTitle: string = store.getters.getInputTitle;
-        const inputMemo: string = store.getters.getInputMemo;
-
+        state.disabled = false;
         state.thirdStyle = "color: #2c3e50";
         state.endStyle = "color: #42b983";
         state.currentView = "MolAddEnd";
         state.buttonText = "登録";
 
-        if (inputTitle === "" || inputMemo === "") {
+        // 未記入欄があれば登録ボタンを押せない様にする
+        if (inputDate === "" || inputTitle === "" || inputMemo === "") {
           state.disabled = true;
         }
       } else if (state.currentView === "MolAddEnd") {
         // DRFと接続して登録処理
+
         await axios
           .post("http://127.0.0.1:8000/api/post_date/", {
-            date: inputDate,
+            date: new Date(inputDate), // DRFに送信する際にDate型に変換
             title: inputTitle,
             memo: inputMemo,
           })

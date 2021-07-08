@@ -15,7 +15,7 @@ export default defineComponent({
     });
 
     const inputDate = (): void => {
-      context.emit("emitInputDate", new Date(state.value));
+      context.emit("emitInputDate", state.value);
     };
 
     return {

@@ -12,13 +12,16 @@
       <tbody>
         <tr>
           <td>【日付】</td>
-          <td align="left">{{ formatDateToString() }}</td>
+          <td v-if="storeGet.inputDate !== ''" align="left">
+            {{ convertDateToJapanese() }}
+          </td>
+          <td v-else class="validate" align="left">※この項目は必須です。</td>
         </tr>
 
         <tr>
           <td>【タイトル】</td>
-          <td v-if="store.state.inputTitle !== ''" align="left">
-            {{ store.state.inputTitle }}
+          <td v-if="storeGet.inputTitle !== ''" align="left">
+            {{ storeGet.inputTitle }}
           </td>
           <td v-else class="validate" align="left">※この項目は必須です。</td>
         </tr>
@@ -26,7 +29,7 @@
         <tr>
           <td>【メモ】</td>
           <td align="left">
-            {{ store.state.inputMemo }}
+            {{ storeGet.inputMemo }}
           </td>
         </tr>
       </tbody>
@@ -35,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
 import { useStore } from "vuex";
 import { key } from "@/store";
 
@@ -44,24 +47,39 @@ export default defineComponent({
   setup() {
     const store = useStore(key);
 
+    // ? storeのgettersで値を取得すると型がanyになってしまうのでアノテーションを明示
+    const storeGet = reactive<{
+      inputDate: string;
+      inputTitle: string;
+      inputMemo: string;
+    }>({
+      inputDate: store.getters.getInputDate,
+      inputTitle: store.getters.getInputTitle,
+      inputMemo: store.getters.getInputMemo,
+    });
+
     // todo 日付フォーマット関数をhelper関数化する
-    const formatDateToString = (): string => {
-      // todo stateを直接参照せずにgettersを使う
-      const date: Date = store.state.inputDate;
+    const convertDateToJapanese = (): string => {
+      const splitDate: string[] = storeGet.inputDate.split("-");
 
-      const yearStr = `${date.getFullYear()}`;
-      const monthStr = `${1 + date.getMonth()}`;
-      const dayStr = `${date.getDate()}`;
+      // 日付に何も入力されていなければ空文字を返す
+      if (storeGet.inputDate === "") {
+        return "";
+      }
 
-      // storeに格納されているDrfPostDateを取得
-      //const date: Date = computed(() => store.getters.getInputDate);
-
-      return yearStr + "年" + monthStr + "月" + dayStr + "日";
+      return (
+        `${Number(splitDate[0])}` +
+        "年" +
+        `${Number(splitDate[1])}` +
+        "月" +
+        `${Number(splitDate[2])}` +
+        "日"
+      );
     };
 
     return {
-      store,
-      formatDateToString,
+      storeGet,
+      convertDateToJapanese,
     };
   },
 });
