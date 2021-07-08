@@ -2,6 +2,7 @@
   <div class="mol-add-end">
     <h2>この内容で登録します。よろしいですか？</h2>
 
+    <!-- todo style="table-layout:fixed;width:100%;" -->
     <table>
       <!-- テーブルセル幅設定 -->
       <colgroup>
