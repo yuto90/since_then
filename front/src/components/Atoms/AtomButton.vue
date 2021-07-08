@@ -1,6 +1,6 @@
 <template>
   <div class="atom-button">
-    <button class="material-button contained-button">
+    <button class="material-button contained-button" :disabled="disabled">
       {{ text }}
     </button>
   </div>
@@ -15,6 +15,10 @@ export default defineComponent({
     text: {
       type: String,
       required: true,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   setup() {

@@ -2,7 +2,7 @@
   <div class="atom-input">
     <input
       :placeholder="placeholder"
-      :size='size'
+      :size="size"
       v-model="state.value"
       @change="inputChange"
     />

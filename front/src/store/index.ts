@@ -32,11 +32,17 @@ export const store = createStore<State>({
     },
   },
   getters: {
-    getDrfPostDate(): string[] {
-      return store.state.drfPostDate;
+    getDrfPostDate(state): string[] {
+      return state.drfPostDate;
     },
-    getInputDate(): Date {
-      return store.state.inputDate;
+    getInputDate(state): Date {
+      return state.inputDate;
+    },
+    getInputTitle(state): string {
+      return state.inputTitle;
+    },
+    getInputMemo(state): string {
+      return state.inputMemo;
     },
   },
   actions: {

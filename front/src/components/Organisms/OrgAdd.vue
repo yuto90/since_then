@@ -7,7 +7,12 @@
     <keep-alive>
       <component :is="state.currentView" />
     </keep-alive>
-    <AtomButton :text="state.buttonText" @click="changeStep" style="padding-top:30px;" />
+    <AtomButton
+      :text="state.buttonText"
+      @click="changeStep"
+      :disabled="state.disabled"
+      style="padding-top: 30px"
+    />
   </div>
 </template>
 
@@ -37,24 +42,19 @@ export default defineComponent({
     const store = useStore(key); // $storeではなくuseStore()で取得する
     const router = useRouter(); // $routeではなくuseRouter()で取得する
 
-    const state = reactive<{
-      currentView: string;
-      firstStyle: string;
-      secondStyle: string;
-      thirdStyle: string;
-      endStyle: string;
-      buttonText: string;
-    }>({
+    const state = reactive({
       currentView: "MolAddFirst",
       firstStyle: "color: #42b983", // 緑
       secondStyle: "color: #2c3e50", // グレー
       thirdStyle: "color: #2c3e50",
       endStyle: "color: #2c3e50",
       buttonText: "次へ",
+      disabled: false,
     });
     //const messageTwo = ref<string>("こんにちは");
 
     const clickFirst = () => {
+      state.disabled = false;
       state.firstStyle = "color: #42b983";
       state.secondStyle = "color: #2c3e50";
       state.thirdStyle = "color: #2c3e50";
@@ -64,6 +64,7 @@ export default defineComponent({
     };
 
     const clickSecond = () => {
+      state.disabled = false;
       state.firstStyle = "color: #2c3e50";
       state.secondStyle = "color: #42b983";
       state.thirdStyle = "color: #2c3e50";
@@ -73,6 +74,7 @@ export default defineComponent({
     };
 
     const clickThird = () => {
+      state.disabled = false;
       state.firstStyle = "color: #2c3e50";
       state.secondStyle = "color: #2c3e50";
       state.thirdStyle = "color: #42b983";
@@ -82,6 +84,7 @@ export default defineComponent({
     };
 
     const end = () => {
+      state.disabled = false;
       state.firstStyle = "color: #2c3e50";
       state.secondStyle = "color: #2c3e50";
       state.thirdStyle = "color: #2c3e50";
@@ -100,16 +103,20 @@ export default defineComponent({
         state.thirdStyle = "color: #42b983";
         state.currentView = "MolAddThird";
       } else if (state.currentView === "MolAddThird") {
+        // storeから入力情報を取得
+        const inputDate: Date = store.getters.getInputDate;
+        const inputTitle: string = store.getters.getInputTitle;
+        const inputMemo: string = store.getters.getInputMemo;
+
         state.thirdStyle = "color: #2c3e50";
         state.endStyle = "color: #42b983";
         state.currentView = "MolAddEnd";
         state.buttonText = "登録";
-      } else if (state.currentView === "MolAddEnd") {
-        // 入力値をstoreから取得
-        const inputDate: Date = store.state.inputDate;
-        const inputTitle: string = store.state.inputTitle;
-        const inputMemo: string = store.state.inputMemo;
 
+        if (inputTitle === "" || inputMemo === "") {
+          state.disabled = true;
+        }
+      } else if (state.currentView === "MolAddEnd") {
         // DRFと接続して登録処理
         await axios
           .post("http://127.0.0.1:8000/api/post_date/", {

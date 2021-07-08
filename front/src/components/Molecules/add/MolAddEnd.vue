@@ -20,9 +20,7 @@
           <td v-if="store.state.inputTitle !== ''" align="left">
             {{ store.state.inputTitle }}
           </td>
-          <td v-else class="validate" align="left">
-            ※この項目は必須です。
-          </td>
+          <td v-else class="validate" align="left">※この項目は必須です。</td>
         </tr>
 
         <tr>
@@ -31,10 +29,8 @@
             {{ store.state.inputMemo }}
           </td>
         </tr>
-
       </tbody>
     </table>
-
   </div>
 </template>
 
