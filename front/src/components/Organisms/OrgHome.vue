@@ -18,7 +18,8 @@
       <tbody>
         <tr v-for="elem in postDate" v-bind:key="elem.id">
           <td>{{ elem["title"] }}</td>
-          <td>{{ elem["date"] }}</td>
+          <!-- <td>{{ elem["date"] }}</td> -->
+          <td>{{ calcDate(elem["date"]) }}</td>
           <td>{{ elem["memo"] }}</td>
         </tr>
       </tbody>
@@ -44,14 +45,34 @@ export default defineComponent({
     // storeに格納されているDrfPostDateを取得
     const postDate = computed(() => store.getters.getDrfPostDate);
 
-    async function getApiResponce() {
+    // 日付計算用関数
+    const calcDate = (date: Date): string => {
+      const setDate = new Date(date);
+      const nowDate: Date = new Date();
+      let diffDays: number;
+      let word: string;
+
+      if (setDate > nowDate) {
+        let diff = Math.abs(setDate.getTime() - nowDate.getTime());
+        diffDays = Math.ceil(diff / (1000 * 3600 * 24));
+        word = `設定日まであと${diffDays}日です！`;
+      } else {
+        let diff = Math.abs(nowDate.getTime() - setDate.getTime());
+        diffDays = Math.ceil(diff / (1000 * 3600 * 24));
+        word = `設定日から${diffDays}日経過しました！`;
+      }
+
+      return word;
+    };
+
+    const getApiResponce = async () => {
       await axios
         .get("http://127.0.0.1:8000/api/post_date") // GET post_date一覧取得
         .then((response) =>
           store.commit("setDrfResponcePostDate", response.data)
         )
         .catch((error) => console.log(error));
-    }
+    };
 
     onMounted(() => {
       getApiResponce();
@@ -61,6 +82,7 @@ export default defineComponent({
       state,
       store,
       postDate,
+      calcDate,
     };
   },
 });
