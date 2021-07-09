@@ -6,7 +6,7 @@
       </div>
       <nav class="header-nav">
         <div class="header-nav-item">
-          <a class="header-button header-post">新規投稿</a>
+          <a class="header-button header-post">新規登録</a>
         </div>
         <div class="header-nav-item">
           <a class="header-button header-login">ログイン</a>
@@ -68,14 +68,14 @@ export default defineComponent({
 }
 
 .header-login {
-  color: #999;
+  color: #2c3e50;
 }
 
 .header-post {
   font-weight: bold;
   color: #fff;
-  background: #00b5ad;
-  border: 1px #00b5ad solid;
+  background: #42b983;
+  border: 1px #42b983 solid;
   border-radius: 3px;
 }
 
