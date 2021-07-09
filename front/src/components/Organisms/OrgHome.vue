@@ -100,5 +100,6 @@ table {
 table td {
   word-wrap: break-word; // 改行させる設定
   padding: 50px 0px;
+  text-align: center;
 }
 </style>

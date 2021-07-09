@@ -159,5 +159,6 @@ export default defineComponent({
     color: #2c3e50;
     cursor: pointer;
   }
+  text-align: center;
 }
 </style>
