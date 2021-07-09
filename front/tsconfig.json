@@ -32,7 +32,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/views/Setting.vue", "src/components/Atoms/AtomButton.vue", "src/views/Add.vue", "src/components/Atoms/AtomInput.vue", "src/components/AtomInput.vue", "src/views/add/AddFirst.vue", "src/views/add/AddSecond.vue", "src/views/add/Add.vue", "src/views/add/child/Add.vue", "src/views/add/child/AddFirst.vue", "src/views/add/child/AddSecond.vue", "src/views/add/child/AddFirst.vue", "src/views/Add/Add.vue", "src/components/Atoms/AtomInputDate.vue", "src/components/Molecules/add/MolAddSecond.vue", "src/components/Molecules/add/MolAddFirst.vue", "src/components/Molecules/add/MolThree.vue", "src/components/Molecules/add/MolAddThird.vue", "src/components/Molecules/add/MolThird.vue", "src/components/Molecules/MolHeader.vue"  ],
+, "src/views/Setting.vue", "src/components/Atoms/AtomButton.vue", "src/views/Add.vue", "src/components/Atoms/AtomInput.vue", "src/components/AtomInput.vue", "src/views/add/AddFirst.vue", "src/views/add/AddSecond.vue", "src/views/add/Add.vue", "src/views/add/child/Add.vue", "src/views/add/child/AddFirst.vue", "src/views/add/child/AddSecond.vue", "src/views/add/child/AddFirst.vue", "src/views/Add/Add.vue", "src/components/Atoms/AtomInputDate.vue", "src/components/Molecules/add/MolAddSecond.vue", "src/components/Molecules/add/MolAddFirst.vue", "src/components/Molecules/add/MolThree.vue", "src/components/Molecules/add/MolAddThird.vue", "src/components/Molecules/add/MolThird.vue", "src/components/Molecules/MolHeader.vue", "src/views/Detail.vue"  ],
   "exclude": [
     "node_modules"
   ]

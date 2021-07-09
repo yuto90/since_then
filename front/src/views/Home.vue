@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <OrgHome />
+    // todo 詳細ページ
   </div>
 </template>
 

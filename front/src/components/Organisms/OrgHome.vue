@@ -23,6 +23,11 @@
           <td class="column">{{ calcDate(elem["date"]) }}</td>
           <td class="column">{{ elem["memo"] }}</td>
           <td class="btn-area">
+            <!--
+            <router-link :to="{ name: 'Detail' }">
+              <AtomButton :text="btnState.text" :disabled="btnState.disabled" />
+            </router-link>
+            -->
             <AtomButton :text="btnState.text" :disabled="btnState.disabled" />
           </td>
         </tr>
@@ -46,7 +51,7 @@ export default defineComponent({
   },
   setup() {
     const btnState = reactive({
-      text: "設定",
+      text: "詳細",
       disabled: false,
     });
 

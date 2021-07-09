@@ -20,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "setting" */ "../views/Setting.vue"),
   },
   {
+    path: "/detail/:id",
+    name: "Detail",
+    component: () => import("../views/Detail.vue"),
+  },
+  {
     // ワイルドカード
     path: "/:pathMatch(.*)*",
     redirect: "/",

@@ -6,7 +6,6 @@
           Since-Then
           <span class="subtitle">「あれから」を記録するアプリ</span>
         </h1>
-        
       </div>
       <nav class="header-nav">
         <div class="header-nav-item">
@@ -90,7 +89,7 @@ export default defineComponent({
 }
 
 h1 .subtitle {
-    font-size: 0.4em;
-    font-weight: normal;
+  font-size: 0.4em;
+  font-weight: normal;
 }
 </style>
