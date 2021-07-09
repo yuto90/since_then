@@ -2,7 +2,11 @@
   <header class="header-3">
     <div class="header-inner">
       <div class="logo">
-        <h1>Since-Then</h1>
+        <h1>
+          Since-Then
+          <span class="subtitle">「あれから」を記録するアプリ</span>
+        </h1>
+        
       </div>
       <nav class="header-nav">
         <div class="header-nav-item">
@@ -83,5 +87,10 @@ export default defineComponent({
   .header-post {
     display: none;
   }
+}
+
+h1 .subtitle {
+    font-size: 0.4em;
+    font-weight: normal;
 }
 </style>

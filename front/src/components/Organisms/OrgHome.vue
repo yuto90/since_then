@@ -6,6 +6,7 @@
         <col style="width: 33%" />
         <col style="width: 33%" />
         <col style="width: 33%" />
+        <col style="width: 33%" />
       </colgroup>
 
       <thead>
@@ -17,10 +18,13 @@
       </thead>
       <tbody>
         <tr v-for="elem in postDate" v-bind:key="elem.id">
-          <td>{{ elem["title"] }}</td>
+          <td class="column">{{ elem["title"] }}</td>
           <!-- <td>{{ elem["date"] }}</td> -->
-          <td>{{ calcDate(elem["date"]) }}</td>
-          <td>{{ elem["memo"] }}</td>
+          <td class="column">{{ calcDate(elem["date"]) }}</td>
+          <td class="column">{{ elem["memo"] }}</td>
+          <td class="btn-area">
+            <AtomButton :text="btnState.text" :disabled="btnState.disabled" />
+          </td>
         </tr>
       </tbody>
     </table>
@@ -33,11 +37,17 @@ import axios from "axios";
 import { useStore } from "vuex";
 import { key } from "@/store";
 
+import AtomButton from "@/components/Atoms/AtomButton.vue";
+
 export default defineComponent({
-  name: "Home",
+  name: "OrgHome",
+  components: {
+    AtomButton,
+  },
   setup() {
-    let state = reactive({
-      data: [],
+    const btnState = reactive({
+      text: "設定",
+      disabled: false,
     });
 
     const store = useStore(key); // $storeではなくuseStore()で取得する
@@ -79,7 +89,7 @@ export default defineComponent({
     });
 
     return {
-      state,
+      btnState,
       store,
       postDate,
       calcDate,
@@ -95,11 +105,11 @@ table {
   margin-left: auto;
   margin-right: auto;
   //border: 3px solid #42b983;
+  text-align: center;
 }
 
-table td {
+.column {
   word-wrap: break-word; // 改行させる設定
   padding: 50px 0px;
-  text-align: center;
 }
 </style>

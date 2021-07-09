@@ -9,7 +9,7 @@ import { defineComponent } from "vue";
 import OrgHome from "@/components/Organisms/OrgHome.vue";
 
 export default defineComponent({
-  name: "Add",
+  name: "Home",
   components: {
     OrgHome,
   },

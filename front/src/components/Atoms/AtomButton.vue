@@ -15,6 +15,7 @@ export default defineComponent({
     text: {
       type: String,
       required: true,
+      default: "ボタンテキスト",
     },
     disabled: {
       type: Boolean,
