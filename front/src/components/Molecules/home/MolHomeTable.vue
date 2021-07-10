@@ -31,7 +31,7 @@
             <AtomButton
               :text="btnState.text"
               :disabled="btnState.disabled"
-              @click="transitionDetail"
+              @click="transitionDetail(elem.id)"
             />
           </td>
         </tr>
@@ -101,8 +101,8 @@ export default defineComponent({
       value: "変更",
     });
 
-    const transitionDetail = () => {
-      context.emit("emitDetail", detailState);
+    const transitionDetail = (detailId:string):void => {
+      context.emit("emitDetail", detailId);
     };
 
     return {

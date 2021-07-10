@@ -1,10 +1,10 @@
 <template>
   <div id="org-home">
     <div v-if="state.currentView === 'MolHomeTable'">
-      <MolHomeTable @emitDetail="transitionDisplay('MolHomeDetail')" />
+      <MolHomeTable @emitDetail="transitionDetail" />
     </div>
     <div v-if="state.currentView === 'MolHomeDetail'">
-      <MolHomeDetail @emitTable="transitionDisplay('MolHomeTable')" />
+      <MolHomeDetail @emitTable="transitionTable" />
     </div>
   </div>
 </template>
@@ -25,16 +25,22 @@ export default defineComponent({
   setup() {
     const state = reactive({
       currentView: "MolHomeTable", // Home画面のデフォルト表示コンポーネント
+      detailId: '',
     });
 
-    // コンポーネント切り替え用関数
-    const transitionDisplay = (currentComponents: string): void => {
-      state.currentView = currentComponents;
+    const transitionTable = (): void => {
+      state.currentView = 'MolHomeTable';
     };
 
+    // 子コンポーネントからの引数は指定した親コンポーネントの関数の引数に伝達される
+    const transitionDetail = (detailId:string): void => {
+      state.detailId = detailId;
+      state.currentView = 'MolHomeDetail';
+    };
     return {
       state,
-      transitionDisplay,
+      transitionTable,
+      transitionDetail,
     };
   },
 });
