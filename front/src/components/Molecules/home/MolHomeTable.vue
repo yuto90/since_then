@@ -23,15 +23,10 @@
           <td class="column">{{ calcDate(elem["date"]) }}</td>
           <td class="column">{{ elem["memo"] }}</td>
           <td class="btn-area">
-            <!--
-            <router-link :to="{ name: 'Detail' }">
-              <AtomButton :text="btnState.text" :disabled="btnState.disabled" />
-            </router-link>
-            -->
             <AtomButton
               :text="btnState.text"
               :disabled="btnState.disabled"
-              @click="transitionDetail(elem.id)"
+              @click="transitionDetail(elem['id'])"
             />
           </td>
         </tr>

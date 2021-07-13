@@ -1,15 +1,21 @@
 <template>
   <div id="mol-home-detail">
-    detail
-    {{ detailId }}
-    <AtomButton :text="btnState.text" @click="transitionTable" />
+    {{ state.postDetail }}
+    <AtomButton :text='"戻る"' @click="transitionTable" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
+import { useStore } from "vuex";
+import { key } from "@/store";
 
 import AtomButton from "@/components/Atoms/AtomButton.vue";
+
+// propsのアノテーション
+type Props = {
+  detailId: number;
+};
 
 export default defineComponent({
   name: "MolHomeDetail",
@@ -22,17 +28,21 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props, context) {
-    const btnState = reactive({
-      text: "戻る",
-    });
+  setup(props:Props, context) {
+    // storeに接続
+    const store = useStore(key);
+
+    const state = reactive({
+      postDetail: store.getters.getDrfPostDate[props.detailId - 1],
+    })
 
     const transitionTable = () => {
       context.emit("emitTable");
     };
 
     return {
-      btnState,
+      store,
+      state,
       transitionTable,
     };
   },
