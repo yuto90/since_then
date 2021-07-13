@@ -1,6 +1,7 @@
 <template>
   <div id="mol-home-detail">
     detail
+    {{ detailId }}
     <AtomButton :text="btnState.text" @click="transitionTable" />
   </div>
 </template>
@@ -14,6 +15,12 @@ export default defineComponent({
   name: "MolHomeDetail",
   components: {
     AtomButton,
+  },
+  props: {
+    detailId: {
+      type: Number,
+      required: true,
+    },
   },
   setup(props, context) {
     const btnState = reactive({

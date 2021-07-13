@@ -97,11 +97,7 @@ export default defineComponent({
         .catch((error) => console.log(error));
     };
 
-    const detailState = reactive({
-      value: "変更",
-    });
-
-    const transitionDetail = (detailId:string):void => {
+    const transitionDetail = (detailId: string): void => {
       context.emit("emitDetail", detailId);
     };
 
