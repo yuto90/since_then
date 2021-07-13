@@ -2,7 +2,7 @@
   <div id="mol-home-detail">
     {{ state.postDetail }}
 
-    <AtomInputDate  :defaultDate="convertToStringDate()"/>
+    <AtomInputDate :defaultDate="state.postDetail['date']" />
     <AtomInput />
     <AtomTextarea />
 
@@ -65,27 +65,10 @@ export default defineComponent({
       context.emit("emitTable");
     };
 
-    // todo
-    // Date型の日付をyyyy-mm-ddに変換する
-    const convertToStringDate = ():string => {
-      const date:Date = state.postDetail["date"];
-      alert(typeof(date));
-
-      const y = date.getFullYear();
-      const m = ('00' + (date.getMonth()+1)).slice(-2);
-      const d = ('00' + date.getDate()).slice(-2);
-
-
-      //return (y + '-' + m + '-' + d);
-      return '2021-10-11';
-
-    };
-
     return {
       store,
       state,
       transitionTable,
-      convertToStringDate,
     };
   },
 });

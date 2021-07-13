@@ -1,10 +1,6 @@
 <template>
   <div class="atom-input-date">
-    <input
-      type="date"
-      v-model="state.value"
-      @change="inputDate"
-    />
+    <input type="date" v-model="state.value" @change="inputDate" />
   </div>
 </template>
 
@@ -12,15 +8,15 @@
 import { defineComponent, reactive } from "vue";
 
 type Props = {
-  defaultDate: string,
-}
+  defaultDate: string;
+};
 
 export default defineComponent({
   name: "AtomInputDate",
   props: {
     defaultDate: {
       type: String,
-      default: '',
+      default: "",
     },
   },
   setup(props: Props, context) {

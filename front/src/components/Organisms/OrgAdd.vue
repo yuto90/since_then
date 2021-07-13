@@ -125,7 +125,7 @@ export default defineComponent({
 
         await axios
           .post("http://127.0.0.1:8000/api/post_date/", {
-            date: new Date(inputDate), // DRFに送信する際にDate型に変換
+            date: inputDate, // DRFに送信する際にDate型に変換
             title: inputTitle,
             memo: inputMemo,
           })
