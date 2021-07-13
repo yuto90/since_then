@@ -50,7 +50,7 @@ export default defineComponent({
   },
   setup(props, context) {
     const btnState = reactive({
-      text: "詳細",
+      text: "編集",
       disabled: false,
     });
 

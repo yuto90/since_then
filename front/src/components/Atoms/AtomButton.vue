@@ -1,13 +1,24 @@
 <template>
   <div class="atom-button">
-    <button class="material-button contained-button" :disabled="disabled">
+    <button
+      class="material-button contained-button"
+      :disabled="disabled"
+      :style="buttonStyle"
+    >
       {{ text }}
     </button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from "vue";
+import { defineComponent, computed } from "vue";
+
+type Props = {
+  text: string;
+  disabled: boolean;
+  btnColor: string;
+  btnTextColor: string;
+};
 
 export default defineComponent({
   name: "AtomButton",
@@ -21,21 +32,22 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    btnColor: {
+      type: String,
+      default: "#42b983", // 緑
+    },
+    btnTextColor: {
+      type: String,
+      default: "#fff",
+    },
   },
-  setup() {
-    const state = reactive<{ messageOne: string }>({
-      messageOne: "Hello",
+  setup(props: Props) {
+    const buttonStyle = computed(() => {
+      return `background-color: ${props.btnColor}; color: ${props.btnTextColor};`;
     });
-    const messageTwo = ref<string>("こんにちは");
-
-    const displayAlert = () => {
-      alert("ddddddddddd");
-    };
 
     return {
-      state,
-      messageTwo,
-      displayAlert,
+      buttonStyle,
     };
   },
 });
@@ -66,8 +78,6 @@ button {
 }
 
 .material-button.contained-button {
-  color: #fff;
-  background-color: #42b983;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
     0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
