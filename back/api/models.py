@@ -83,7 +83,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
 
 class PostDate(models.Model):
-    date = models.DateTimeField(blank=False, null=False)
+    date = models.DateField(blank=False, null=False)
     title = models.CharField(blank=False, null=False, max_length=150)
     memo = models.TextField(blank=True)
     created_datetime = models.DateTimeField(auto_now_add=True)
