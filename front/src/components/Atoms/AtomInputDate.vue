@@ -1,17 +1,31 @@
 <template>
   <div class="atom-input-date">
-    <input type="date" v-model="state.value" @change="inputDate" />
+    <input
+      type="date"
+      v-model="state.value"
+      @change="inputDate"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
 
+type Props = {
+  defaultDate: string,
+}
+
 export default defineComponent({
   name: "AtomInputDate",
-  setup(props, context) {
-    const state = reactive<{ value: string }>({
-      value: "",
+  props: {
+    defaultDate: {
+      type: String,
+      default: '',
+    },
+  },
+  setup(props: Props, context) {
+    const state = reactive({
+      value: props.defaultDate,
     });
 
     const inputDate = (): void => {
