@@ -13,17 +13,25 @@
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
 
+type Props = {
+  placeholder: string;
+  cols: string;
+  rows: string;
+  defaultText: string;
+};
+
 export default defineComponent({
   name: "AtomTextarea",
   props: {
-    placeholder: { type: String },
+    placeholder: { type: String, default: "hint" },
     cols: { type: String, default: "30" },
     rows: { type: String, default: "7" },
+    defaultText: { type: String, default: "" },
   },
-  setup(props, context) {
-    const state = reactive<{ value: string }>({
+  setup(props: Props, context) {
+    const state = reactive({
       // v-modelによって入力される度に更新されていく
-      value: "",
+      value: props.defaultText,
     });
 
     // 入力される度に値をMolAddThirdにEmitする

@@ -7,7 +7,10 @@
       :placeholder="'タイトル名を入力してください'"
       :defaultTitle="state.postDetail['title']"
     />
-    <AtomTextarea />
+    <AtomTextarea
+      :placeholder="'メモ等あればを入力してください'"
+      :defaultText="state.postDetail['memo']"
+    />
 
     <div class="content">
       <div class="inner">
