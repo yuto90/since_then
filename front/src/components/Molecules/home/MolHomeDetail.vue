@@ -8,13 +8,13 @@
       </colgroup>
 
       <tr>
-        <th>タイトル</th>
+        <th>日付</th>
         <td class="column">
           <AtomInputDate :defaultDate="state.postDetail['date']" />
         </td>
       </tr>
       <tr>
-        <th>日付</th>
+        <th>タイトル</th>
         <td class="column">
           <AtomInput
             :placeholder="'タイトル名を入力してください'"
@@ -46,9 +46,23 @@
     </table>
 
     <div class="btn">
-      <AtomButton :text="'戻る'" @click="transitionTable" style="padding:0px 3%;" />
-      <AtomButton :text="'更新'" @click="transitionTable" btnColor="#00CCFF" style="padding:0px 3%;" />
-      <AtomButton :text="'削除'" @click="transitionTable" btnColor="#FF4F50" style="padding:0px 3%;" />
+      <AtomButton
+        :text="'戻る'"
+        @click="transitionTable"
+        style="padding: 0px 3%"
+      />
+      <AtomButton
+        :text="'更新'"
+        @click="transitionTable"
+        btnColor="#00CCFF"
+        style="padding: 0px 3%"
+      />
+      <AtomButton
+        :text="'削除'"
+        @click="transitionTable"
+        btnColor="#FF4F50"
+        style="padding: 0px 3%"
+      />
     </div>
   </div>
 </template>

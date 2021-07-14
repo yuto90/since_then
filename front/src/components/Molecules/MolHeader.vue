@@ -3,7 +3,12 @@
     <div class="header-inner">
       <div class="logo">
         <h1>
-          Since-Then
+          <router-link
+            :to="{ name: 'Home' }"
+            style="color: #42b983; text-decoration: none"
+          >
+            Since-Then
+          </router-link>
           <span class="subtitle">「あれから」を記録するアプリ</span>
         </h1>
       </div>
