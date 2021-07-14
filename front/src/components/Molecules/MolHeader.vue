@@ -42,7 +42,7 @@ export default defineComponent({
   padding: 0 0.8em;
   margin: 0 auto;
   font-size: 1.2em;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .header-nav {

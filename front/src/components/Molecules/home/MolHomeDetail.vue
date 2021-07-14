@@ -145,7 +145,7 @@ table {
   //border: 3px solid #42b983;
 }
 tr {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .column {
