@@ -12,15 +12,22 @@
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
 
+type Props = {
+  placeholder: string;
+  size: string;
+  defaultTitle: string;
+};
+
 export default defineComponent({
   name: "AtomInput",
   props: {
     placeholder: { type: String, default: "hint" },
     size: { type: String, default: "30" },
+    defaultTitle: { type: String, default: "" },
   },
-  setup(props, context) {
-    const state = reactive<{ value: string }>({
-      value: "",
+  setup(props: Props, context) {
+    const state = reactive({
+      value: props.defaultTitle,
     });
 
     const inputChange = () => {

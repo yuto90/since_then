@@ -3,7 +3,10 @@
     {{ state.postDetail }}
 
     <AtomInputDate :defaultDate="state.postDetail['date']" />
-    <AtomInput />
+    <AtomInput
+      :placeholder="'タイトル名を入力してください'"
+      :defaultTitle="state.postDetail['title']"
+    />
     <AtomTextarea />
 
     <div class="content">
