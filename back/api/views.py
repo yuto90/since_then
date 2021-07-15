@@ -10,10 +10,11 @@ class PostDateView(generics.ListCreateAPIView):
     serializer_class = serializers.PostDateSerializer
 
 
-# RetrieveUpdateAPIView メソッド:POST, PUT
+# RetrieveUpdateDestroyAPIView メソッド:POST, PUT, DELETE
 # 単一取得
 # 詳細を更新
-class PostDateDetailView(generics.RetrieveUpdateAPIView):
+# 詳細を削除
+class PostDateDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = PostDate.objects.all()
     serializer_class = serializers.PostDateSerializer
 
