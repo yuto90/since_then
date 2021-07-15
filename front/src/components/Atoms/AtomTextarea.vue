@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, onMounted } from "vue";
 
 type Props = {
   placeholder: string;
@@ -38,6 +38,10 @@ export default defineComponent({
     const inputChange = () => {
       context.emit("emitTextarea", state.value);
     };
+
+    onMounted(() => {
+      context.emit("emitTextarea", state.value);
+    });
 
     return {
       state,

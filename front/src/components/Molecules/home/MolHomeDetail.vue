@@ -10,7 +10,10 @@
       <tr>
         <th>日付</th>
         <td class="column">
-          <AtomInputDate :defaultDate="state.postDetail['date']" />
+          <AtomInputDate
+            :defaultDate="state.postDetail['date']"
+            @emitInputDate="emitInputDate"
+          />
         </td>
       </tr>
       <tr>
@@ -19,6 +22,7 @@
           <AtomInput
             :placeholder="'タイトル名を入力してください'"
             :defaultTitle="state.postDetail['title']"
+            @emitInput="emitInput"
           />
         </td>
       </tr>
@@ -28,6 +32,7 @@
           <AtomTextarea
             :placeholder="'メモ等あればを入力してください'"
             :defaultText="state.postDetail['memo']"
+            @emitTextarea="emitTextarea"
           />
         </td>
       </tr>
@@ -53,7 +58,7 @@
       />
       <AtomButton
         :text="'更新'"
-        @click="transitionTable"
+        @click="updateDetail"
         btnColor="#00CCFF"
         style="padding: 0px 3%"
       />
@@ -71,6 +76,7 @@
 import { defineComponent, reactive } from "vue";
 import { useStore } from "vuex";
 import { key } from "@/store";
+import axios from "axios";
 
 import AtomButton from "@/components/Atoms/AtomButton.vue";
 import AtomInput from "@/components/Atoms/AtomInput.vue";
@@ -130,11 +136,55 @@ export default defineComponent({
       return formatDate;
     };
 
+    // 入力されている日付をstoreに登録
+    const emitInputDate = (emitDate: string) => {
+      store.commit("setDate", emitDate);
+    };
+
+    // 入力されているタイトルをstoreに登録
+    const emitInput = (emitTitle: string): void => {
+      store.commit("setTitle", emitTitle);
+    };
+
+    // 入力されているメモをstoreに登録
+    const emitTextarea = (emitText: string) => {
+      store.commit("setMemo", emitText);
+    };
+
+    // 投稿のアップデート
+    const updateDetail = async () => {
+      // storeから入力情報を取得
+      const inputDate: string = store.getters.getInputDate;
+      const inputTitle: string = store.getters.getInputTitle;
+      const inputMemo: string = store.getters.getInputMemo;
+
+      const id: number = props.detailId;
+
+      await axios
+        .put(`http://127.0.0.1:8000/api/post_date/${id}/`, {
+          date: inputDate, // DRFに送信する際にDate型に変換
+          title: inputTitle,
+          memo: inputMemo,
+        })
+        .then((response) => console.log(response.data))
+        .catch((error) => console.log(error));
+
+      // 入力内容をリセット
+      await store.dispatch("resetInputValue");
+
+      // Home(Table)へリダイレクト
+      transitionTable();
+    };
+
     return {
       store,
       state,
       transitionTable,
       formatDateToString,
+      emitInputDate,
+      emitInput,
+      emitTextarea,
+      updateDetail,
     };
   },
 });

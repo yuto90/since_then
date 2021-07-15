@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, onMounted } from "vue";
 
 type Props = {
   defaultDate: string;
@@ -27,6 +27,10 @@ export default defineComponent({
     const inputDate = (): void => {
       context.emit("emitInputDate", state.value);
     };
+
+    onMounted(() => {
+      context.emit("emitInputDate", state.value);
+    });
 
     return {
       state,

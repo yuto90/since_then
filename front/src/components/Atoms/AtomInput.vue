@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, onMounted } from "vue";
 
 type Props = {
   placeholder: string;
@@ -33,6 +33,10 @@ export default defineComponent({
     const inputChange = () => {
       context.emit("emitInput", state.value);
     };
+
+    onMounted(() => {
+      context.emit("emitInput", state.value);
+    });
 
     return {
       state,
