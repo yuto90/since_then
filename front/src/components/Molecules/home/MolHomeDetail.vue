@@ -156,10 +156,11 @@ export default defineComponent({
     const deletePost = async () => {
       const id: number = state.postDetail["id"];
 
-      await axios
-        .delete(`http://127.0.0.1:8000/api/post_date/${id}/`)
-        .then((response) => console.log(response.data))
-        .catch((error) => console.log(error));
+      if (confirm("投稿を削除してよろしいですか？"))
+        await axios
+          .delete(`http://127.0.0.1:8000/api/post_date/${id}/`)
+          .then((response) => console.log(response.data))
+          .catch((error) => console.log(error));
 
       // 入力内容をリセット
       await store.dispatch("resetInputValue");
