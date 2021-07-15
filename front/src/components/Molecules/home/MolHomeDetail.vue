@@ -64,7 +64,7 @@
       />
       <AtomButton
         :text="'削除'"
-        @click="transitionTable"
+        @click="deletePost"
         btnColor="#FF4F50"
         style="padding: 0px 3%"
       />
@@ -152,6 +152,21 @@ export default defineComponent({
       store.commit("setMemo", emitText);
     };
 
+    // 投稿の削除
+    const deletePost = async () => {
+      const id: number = state.postDetail["id"];
+
+      await axios
+        .delete(`http://127.0.0.1:8000/api/post_date/${id}/`)
+        .then((response) => console.log(response.data))
+        .catch((error) => console.log(error));
+
+      // 入力内容をリセット
+      await store.dispatch("resetInputValue");
+
+      // Home(Table)へリダイレクト
+      transitionTable();
+    };
     // 投稿のアップデート
     const updateDetail = async () => {
       // storeから入力情報を取得
@@ -159,7 +174,7 @@ export default defineComponent({
       const inputTitle: string = store.getters.getInputTitle;
       const inputMemo: string = store.getters.getInputMemo;
 
-      const id: number = state.postDetail['id'];
+      const id: number = state.postDetail["id"];
 
       await axios
         .put(`http://127.0.0.1:8000/api/post_date/${id}/`, {
@@ -186,6 +201,7 @@ export default defineComponent({
       emitInput,
       emitTextarea,
       updateDetail,
+      deletePost,
     };
   },
 });
