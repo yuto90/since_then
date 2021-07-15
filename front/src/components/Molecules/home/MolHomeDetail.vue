@@ -85,7 +85,7 @@ import AtomTextarea from "@/components/Atoms/AtomTextarea.vue";
 
 // propsのアノテーション
 type Props = {
-  detailId: number;
+  index: number;
 };
 
 export default defineComponent({
@@ -97,7 +97,7 @@ export default defineComponent({
     AtomTextarea,
   },
   props: {
-    detailId: {
+    index: {
       type: Number,
       required: true,
     },
@@ -107,7 +107,8 @@ export default defineComponent({
     const store = useStore(key);
 
     const state = reactive({
-      postDetail: store.getters.getDrfPostDate[props.detailId - 1],
+      // todo DRFからの個別取得にする
+      postDetail: store.getters.getDrfPostDate[props.index],
     });
 
     const transitionTable = () => {
@@ -158,7 +159,7 @@ export default defineComponent({
       const inputTitle: string = store.getters.getInputTitle;
       const inputMemo: string = store.getters.getInputMemo;
 
-      const id: number = props.detailId;
+      const id: number = state.postDetail['id'];
 
       await axios
         .put(`http://127.0.0.1:8000/api/post_date/${id}/`, {

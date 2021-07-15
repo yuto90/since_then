@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="elem in postDate" v-bind:key="elem.id">
+        <tr v-for="(elem, index) in postDate" :key="elem.id">
           <td class="column">{{ elem["title"] }}</td>
           <!-- <td>{{ elem["date"] }}</td> -->
           <td class="column">{{ calcDate(elem["date"]) }}</td>
@@ -26,7 +26,7 @@
             <AtomButton
               :text="btnState.text"
               :disabled="btnState.disabled"
-              @click="transitionDetail(elem['id'])"
+              @click="transitionDetail(index)"
             />
           </td>
         </tr>
@@ -92,8 +92,8 @@ export default defineComponent({
         .catch((error) => console.log(error));
     };
 
-    const transitionDetail = (detailId: string): void => {
-      context.emit("emitDetail", detailId);
+    const transitionDetail = (index: string): void => {
+      context.emit("emitDetail", index);
     };
 
     return {

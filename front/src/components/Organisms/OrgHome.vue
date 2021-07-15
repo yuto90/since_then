@@ -4,7 +4,7 @@
       <MolHomeTable @emitDetail="transitionDetail" />
     </div>
     <div v-if="state.currentView === 'MolHomeDetail'">
-      <MolHomeDetail @emitTable="transitionTable" :detailId="state.detailId" />
+      <MolHomeDetail @emitTable="transitionTable" :index="state.index" />
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ export default defineComponent({
   setup() {
     const state = reactive({
       currentView: "MolHomeTable", // Home画面のデフォルト表示コンポーネント
-      detailId: "",
+      index: "",
     });
 
     const transitionTable = (): void => {
@@ -33,8 +33,8 @@ export default defineComponent({
     };
 
     // 子コンポーネントからの引数は指定した親コンポーネントの関数の引数に伝達される
-    const transitionDetail = (detailId: string): void => {
-      state.detailId = detailId;
+    const transitionDetail = (index: string): void => {
+      state.index = index;
       state.currentView = "MolHomeDetail";
     };
     return {
