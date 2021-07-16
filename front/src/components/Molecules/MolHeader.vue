@@ -14,10 +14,19 @@
       </div>
       <nav class="header-nav">
         <div class="header-nav-item">
-          <a class="header-button header-post">新規登録</a>
+          <router-link :to="{ name: 'Auth' }">
+            <AtomButton :text="'新規登録'" @click="transitionTable" />
+          </router-link>
         </div>
         <div class="header-nav-item">
-          <a class="header-button header-login">ログイン</a>
+          <router-link :to="{ name: 'Auth' }">
+            <AtomButton
+              :text="'ログイン'"
+              @click="transitionTable"
+              btnColor="white"
+              btnTextColor="#2c3e50"
+            />
+          </router-link>
         </div>
       </nav>
     </div>
@@ -27,8 +36,14 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+import AtomButton from "@/components/Atoms/AtomButton.vue";
+
 export default defineComponent({
   name: "MolHeader",
+  components: {
+    AtomButton,
+  },
+  //setup(props, context) {},
 });
 </script>
 
@@ -65,32 +80,11 @@ export default defineComponent({
   width: 70px;
 }
 
-.header-button {
-  box-sizing: border-box;
-  display: inline-block;
-  padding: 0.5em 1.2em;
-  font-size: 12px;
-  text-decoration: none;
-  cursor: pointer;
-  user-select: none;
-}
-
 .header-login {
   color: #2c3e50;
 }
 
-.header-post {
-  font-weight: bold;
-  color: #fff;
-  background: #42b983;
-  border: 1px #42b983 solid;
-  border-radius: 3px;
-}
-
 @media screen and (max-width: 480px) {
-  .header-post {
-    display: none;
-  }
 }
 
 h1 .subtitle {
