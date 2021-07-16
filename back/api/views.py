@@ -60,3 +60,20 @@ class AuthInfoGetView(generics.RetrieveAPIView):
             'name': request.user.name,
         },
             status=status.HTTP_200_OK)
+
+# ユーザ情報更新のView(PUT)
+
+
+class AuthInfoUpdateView(generics.UpdateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = UserProfileSerializer
+    #lookup_field = 'email'
+    queryset = UserProfile.objects.all()
+
+    def get_object(self):
+        try:
+            #instance = self.queryset.get(email=self.request.user.email)
+            instance = self.queryset.get(pk=self.request.user.id)
+            return instance
+        except UserProfile.DoesNotExist:
+            raise Http404

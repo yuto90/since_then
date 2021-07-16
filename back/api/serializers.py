@@ -38,6 +38,14 @@ class UserProfileSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         return super().update(instance, validated_data)
 
+    #def update(self, instance, validated_data):
+    #    if 'password' in validated_data:
+    #        instance.set_password(validated_data['password'])
+    #    else:
+    #        instance = super().update(instance, validated_data)
+    #    instance.save()
+    #    return instance
+
 
 class PostDateSerializer(serializers.ModelSerializer):
     # API返却値のフォーマットを見やすくする
