@@ -12,6 +12,7 @@ from rest_framework import status, viewsets, filters
 
 # ListCreateAPIView メソッド：GET, POST
 class PostDateView(generics.ListCreateAPIView):
+    permission_classes = (permissions.IsAdminUser,)
     queryset = PostDate.objects.all()
     serializer_class = PostDateSerializer
 
@@ -21,12 +22,14 @@ class PostDateView(generics.ListCreateAPIView):
 # 詳細を更新
 # 詳細を削除
 class PostDateDetailView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (permissions.IsAdminUser,)
     queryset = PostDate.objects.all()
     serializer_class = PostDateSerializer
 
 
 # ModelViewSet　1つのエンドポイントでmodelに紐付いたCRUD処理を実装してくれる
 class UserProfileViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.IsAdminUser,)
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
 
@@ -56,8 +59,11 @@ class AuthInfoGetView(generics.RetrieveAPIView):
 
     def get(self, request, format=None):
         return Response(data={
-            'email': request.user.email,
+            'id': request.user.id,
             'name': request.user.name,
+            'email': request.user.email,
+            'is_active': request.user.is_active,
+            'is_staff': request.user.is_staff,
         },
             status=status.HTTP_200_OK)
 
