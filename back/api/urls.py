@@ -1,6 +1,6 @@
 from django.urls import path, include
 #from api import views
-from .views import UserProfileViewSet, PostDateView, PostDateDetailView, AuthRegister, AuthInfoGetView, AuthInfoUpdateView
+from .views import UserProfileViewSet, PostDateView, PostDateDetailView, AuthRegister, AuthInfoGetView, AuthInfoUpdateView, AuthInfoDeleteView
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
@@ -19,6 +19,8 @@ urlpatterns = [
     path('mypage/', AuthInfoGetView.as_view(), name='mypage'),
     # ログイン中ユーザーの情報を更新
     path('auth_update/', AuthInfoUpdateView.as_view(), name='auth_update'),
+    # ログイン中ユーザーの削除
+    path('delete/', AuthInfoDeleteView.as_view()),
     # router接続用
     path('', include(router.urls)),
 ]

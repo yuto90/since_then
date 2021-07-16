@@ -77,3 +77,20 @@ class AuthInfoUpdateView(generics.UpdateAPIView):
             return instance
         except UserProfile.DoesNotExist:
             raise Http404
+
+# ユーザ削除のView(DELETE)
+
+
+class AuthInfoDeleteView(generics.DestroyAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = UserProfileSerializer
+    #lookup_field = 'email'
+    queryset = UserProfile.objects.all()
+
+    def get_object(self):
+        try:
+            #instance = self.queryset.get(email=self.request.user)
+            instance = self.queryset.get(pk=self.request.user.id)
+            return instance
+        except UserProfile.DoesNotExist:
+            raise Http404
