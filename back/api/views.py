@@ -45,3 +45,18 @@ class AuthRegister(generics.CreateAPIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# ユーザ情報取得のView(GET)
+
+
+class AuthInfoGetView(generics.RetrieveAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+
+    def get(self, request, format=None):
+        return Response(data={
+            'email': request.user.email,
+            'name': request.user.name,
+        },
+            status=status.HTTP_200_OK)
