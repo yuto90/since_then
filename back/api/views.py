@@ -1,13 +1,19 @@
-from api import serializers
+from .serializers import UserProfileSerializer, PostDateSerializer
 from .models import PostDate, UserProfile
-from rest_framework import generics
-from rest_framework import viewsets
+from rest_framework import generics, permissions, authentication
+from django.contrib.auth import authenticate
+from django.db import transaction
+from django.http import HttpResponse, Http404
+from rest_framework_jwt.settings import api_settings
+from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.response import Response
+from rest_framework import status, viewsets, filters
 
 
 # ListCreateAPIView メソッド：GET, POST
 class PostDateView(generics.ListCreateAPIView):
     queryset = PostDate.objects.all()
-    serializer_class = serializers.PostDateSerializer
+    serializer_class = PostDateSerializer
 
 
 # RetrieveUpdateDestroyAPIView メソッド:POST, PUT, DELETE
@@ -16,10 +22,26 @@ class PostDateView(generics.ListCreateAPIView):
 # 詳細を削除
 class PostDateDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = PostDate.objects.all()
-    serializer_class = serializers.PostDateSerializer
+    serializer_class = PostDateSerializer
 
 
 # ModelViewSet　1つのエンドポイントでmodelに紐付いたCRUD処理を実装してくれる
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
-    serializer_class = serializers.UserProfileSerializer
+    serializer_class = UserProfileSerializer
+
+# ユーザ作成のView(POST)
+
+
+class AuthRegister(generics.CreateAPIView):
+    permission_classes = (permissions.AllowAny,)
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+
+    @transaction.atomic
+    def post(self, request, format=None):
+        serializer = UserProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -41,11 +41,11 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 class PostDateSerializer(serializers.ModelSerializer):
     # API返却値のフォーマットを見やすくする
-    #created_datetime = serializers.DateTimeField(format="%Y-%m-%d %H:%M")
-    #updated_datetime = serializers.DateTimeField(format="%Y-%m-%d %H:%M")
+    # created_datetime = serializers.DateTimeField(format="%Y-%m-%d %H:%M")
+    # updated_datetime = serializers.DateTimeField(format="%Y-%m-%d %H:%M")
 
     # authorのserializerを上書き(外部キーだから)
-    #author = UserProfileSerializer()
+    # author = UserProfileSerializer()
 
     class Meta:
         model = PostDate
