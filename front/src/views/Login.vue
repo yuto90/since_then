@@ -1,17 +1,17 @@
 <template>
-  <div id="home">
-    <OrgAuth />
+  <div class="login">
+    <MolLogin />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import OrgAuth from "@/components/Organisms/OrgAuth.vue";
+import MolLogin from "@/components/Molecules/MolLogin.vue";
 
 export default defineComponent({
-  name: "Auth",
+  name: "Login",
   components: {
-    OrgAuth,
+    MolLogin,
   },
 });
 </script>

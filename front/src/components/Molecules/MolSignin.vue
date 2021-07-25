@@ -1,7 +1,5 @@
 <template>
-  <div id="mol-auth-signin">
-    Signin
-  </div>
+  <div id="mol-auth-signin">Signin</div>
 </template>
 
 <script lang="ts">
@@ -12,5 +10,4 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

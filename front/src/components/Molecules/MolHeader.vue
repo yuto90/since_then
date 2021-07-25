@@ -14,12 +14,12 @@
       </div>
       <nav class="header-nav">
         <div class="header-nav-item">
-          <router-link :to="{ name: 'Auth' }">
+          <router-link :to="{ name: 'Signin' }">
             <AtomButton :text="'新規登録'" @click="transitionTable" />
           </router-link>
         </div>
         <div class="header-nav-item">
-          <router-link :to="{ name: 'Auth' }">
+          <router-link :to="{ name: 'Login' }">
             <AtomButton
               :text="'ログイン'"
               @click="transitionTable"

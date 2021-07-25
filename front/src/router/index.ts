@@ -20,9 +20,14 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "setting" */ "../views/Setting.vue"),
   },
   {
-    path: "/auth",
-    name: "Auth",
-    component: () => import("../views/Auth.vue"),
+    path: "/login",
+    name: "Login",
+    component: () => import("../views/Login.vue"),
+  },
+  {
+    path: "/signin",
+    name: "Signin",
+    component: () => import("../views/Signin.vue"),
   },
   {
     // ワイルドカード
