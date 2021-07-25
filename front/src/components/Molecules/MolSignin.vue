@@ -1,5 +1,5 @@
 <template>
-  <div id="mol-auth-signin">Signin</div>
+  <div id="mol-signin">MolSignin</div>
 </template>
 
 <script lang="ts">

@@ -1,17 +1,17 @@
 <template>
   <div class="login">
-    <MolLogin />
+    <OrgLogin />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import MolLogin from "@/components/Molecules/MolLogin.vue";
+import OrgLogin from "@/components/Organisms/OrgLogin.vue";
 
 export default defineComponent({
   name: "Login",
   components: {
-    MolLogin,
+    OrgLogin,
   },
 });
 </script>
