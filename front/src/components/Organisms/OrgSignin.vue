@@ -9,7 +9,7 @@
 
       <MolEmailForm @emitEmail="setInputEmail" />
 
-      <MolPassForm />
+      <MolPassForm @emitPass="setInputPass" />
 
       <div class="form-register-button">
         <AtomButton :text="'新規登録'" />
@@ -47,13 +47,17 @@ export default defineComponent({
     };
 
     const setInputEmail = (inputEmail: string) => {
-      alert(inputEmail);
       state.displayInputEmail = inputEmail;
+    };
+
+    const setInputPass = (inputPass: string) => {
+      state.displayInputPass = inputPass;
     };
 
     return {
       setInputName,
       setInputEmail,
+      setInputPass,
     };
   },
 });

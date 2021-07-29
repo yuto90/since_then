@@ -4,7 +4,11 @@
       <p class="Form-Item-Label">
         <span class="Form-Item-Label-Required">必須</span>パスワード
       </p>
-      <AtomInput class="Form-Item-Input" placeholder="pass" />
+      <AtomPass
+        class="Form-Item-Input"
+        @emitInput="emitPass"
+        placeholder="pass"
+      />
       <!--
         <input
           type="email"
@@ -19,12 +23,21 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import AtomInput from "@/components/Atoms/AtomInput.vue";
+import AtomPass from "@/components/Atoms/AtomPass.vue";
 
 export default defineComponent({
   name: "MolPassForm",
   components: {
-    AtomInput,
+    AtomPass,
+  },
+  setup(_, context) {
+    const emitPass = (inputPass: string) => {
+      context.emit("emitPass", inputPass);
+    };
+
+    return {
+      emitPass,
+    };
   },
 });
 </script>
