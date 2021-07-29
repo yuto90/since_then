@@ -3,7 +3,12 @@
     <p class="Form-Item-Label">
       <span class="Form-Item-Label-Required">必須</span>メールアドレス
     </p>
-    <AtomInput class="Form-Item-Input" placeholder="example@gmail.com" />
+    <AtomInput
+      class="Form-Item-Input"
+      @emitInput="emitEmail"
+      placeholder="example@gmail.com"
+    />
+
     <!--
         <input
           type="email"
@@ -23,6 +28,15 @@ export default defineComponent({
   name: "MolEmailForm",
   components: {
     AtomInput,
+  },
+  setup(_, context) {
+    const emitEmail = (inputEmail: string) => {
+      context.emit("emitEmail", inputEmail);
+    };
+
+    return {
+      emitEmail,
+    };
   },
 });
 </script>

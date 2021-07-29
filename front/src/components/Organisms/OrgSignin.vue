@@ -7,7 +7,7 @@
 
       <MolNameForm @emitInput="setInputName" />
 
-      <MolEmailForm />
+      <MolEmailForm @emitEmail="setInputEmail" />
 
       <MolPassForm />
 
@@ -46,8 +46,14 @@ export default defineComponent({
       state.displayInputName = inputName;
     };
 
+    const setInputEmail = (inputEmail: string) => {
+      alert(inputEmail);
+      state.displayInputEmail = inputEmail;
+    };
+
     return {
       setInputName,
+      setInputEmail,
     };
   },
 });
