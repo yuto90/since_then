@@ -12,7 +12,7 @@
       <MolPassForm @emitPass="setInputPass" />
 
       <div class="form-register-button">
-        <AtomButton :text="'新規登録'" />
+        <AtomButton @click="registerUser" :text="'新規登録'" />
       </div>
     </div>
   </div>
@@ -20,6 +20,8 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
+import { useRouter } from "vue-router";
+import axios from "axios";
 
 import AtomButton from "@/components/Atoms/AtomButton.vue";
 
@@ -36,6 +38,8 @@ export default defineComponent({
     MolPassForm,
   },
   setup() {
+    const router = useRouter();
+
     const state = reactive({
       displayInputName: "",
       displayInputEmail: "",
@@ -54,10 +58,37 @@ export default defineComponent({
       state.displayInputPass = inputPass;
     };
 
+    const registerUser = async () => {
+      // ユーザー新規登録
+      await axios
+        .post("http://127.0.0.1:8000/api/register/", {
+          name: state.displayInputName,
+          email: state.displayInputEmail,
+          password: state.displayInputPass,
+        })
+        .then((response) => console.log(response.data))
+        .catch((error) => console.log(error));
+
+      // ユーザーログイン
+      await axios
+        .post("http://127.0.0.1:8000/login/", {
+          email: state.displayInputEmail,
+          password: state.displayInputPass,
+        })
+        .then((response) => {
+          console.log(response.data["token"]);
+        })
+        .catch((error) => console.log(error));
+
+      // Homeにリダイレクト
+      router.push("/");
+    };
+
     return {
       setInputName,
       setInputEmail,
       setInputPass,
+      registerUser,
     };
   },
 });
