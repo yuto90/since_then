@@ -3,7 +3,11 @@
     <p class="Form-Item-Label">
       <span class="Form-Item-Label-Required">必須</span>ユーザー名
     </p>
-    <AtomInput class="Form-Item-Input" placeholder="山田太郎" />
+    <AtomInput
+      class="Form-Item-Input"
+      @emitInput="emitName"
+      placeholder="山田太郎"
+    />
     <!--
     <input type="text" class="Form-Item-Input" placeholder="例）山田太郎" />
     -->
@@ -19,6 +23,15 @@ export default defineComponent({
   name: "MolNameForm",
   components: {
     AtomInput,
+  },
+  setup(_, context) {
+    const emitName = (inputName: string) => {
+      context.emit("emitInput", inputName);
+    };
+
+    return {
+      emitName,
+    };
   },
 });
 </script>

@@ -5,7 +5,7 @@
         <h2>Since-Thenに登録する</h2>
       </div>
 
-      <MolNameForm />
+      <MolNameForm @emitInput="setInputName" />
 
       <MolEmailForm />
 
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
 
 import AtomButton from "@/components/Atoms/AtomButton.vue";
 
@@ -34,6 +34,21 @@ export default defineComponent({
     MolNameForm,
     MolEmailForm,
     MolPassForm,
+  },
+  setup() {
+    const state = reactive({
+      displayInputName: "",
+      displayInputEmail: "",
+      displayInputPass: "",
+    });
+
+    const setInputName = (inputName: string) => {
+      state.displayInputName = inputName;
+    };
+
+    return {
+      setInputName,
+    };
   },
 });
 </script>
