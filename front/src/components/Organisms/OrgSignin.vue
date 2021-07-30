@@ -21,6 +21,8 @@
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+import { key } from "@/store";
 import axios from "axios";
 
 import AtomButton from "@/components/Atoms/AtomButton.vue";
@@ -38,6 +40,7 @@ export default defineComponent({
     MolPassForm,
   },
   setup() {
+    const store = useStore(key);
     const router = useRouter();
 
     const state = reactive({
@@ -77,6 +80,7 @@ export default defineComponent({
         })
         .then((response) => {
           console.log(response.data["token"]);
+          store.commit("setToken", "JWT " + response.data["token"]);
         })
         .catch((error) => console.log(error));
 

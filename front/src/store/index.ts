@@ -6,6 +6,7 @@ export interface State {
   inputTitle: string;
   inputMemo: string;
   drfPostDate: string[];
+  token: string;
 }
 
 export const key: InjectionKey<Store<State>> = Symbol(); // Stateのキーと型の一覧
@@ -16,6 +17,7 @@ export const store = createStore<State>({
     inputTitle: "",
     inputMemo: "",
     drfPostDate: [],
+    token: "",
   },
   mutations: {
     setDate(state, payload) {
@@ -30,6 +32,9 @@ export const store = createStore<State>({
     setDrfResponcePostDate(state, payload) {
       state.drfPostDate = payload;
     },
+    setToken(state, payload) {
+      state.token = payload;
+    },
   },
   getters: {
     getDrfPostDate(state): string[] {
@@ -43,6 +48,9 @@ export const store = createStore<State>({
     },
     getInputMemo(state): string {
       return state.inputMemo;
+    },
+    getToken(state): string {
+      return state.token;
     },
   },
   actions: {
