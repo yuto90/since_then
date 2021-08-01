@@ -85,37 +85,19 @@ export default defineComponent({
     };
 
     const getApiResponce = async () => {
-      
-
       // ログインユーザーのトークンを取得
       const token: string = store.getters.getToken;
 
-      const requestParam: AxiosRequestConfig = {
-        method: "get",
-        url: "http://127.0.0.1:8000/api/post_date",
-        data: {},
-        headers: {
-          "Authorization": token,
-        },
-      };
-      //const apiResponse = await axios(requestParam);
-
-      await axios(requestParam)
-        .then((response) =>
-          store.commit("setDrfResponcePostDate", response.data)
-        )
+      await axios
+        .get("http://127.0.0.1:8000/api/post_date/", {
+          headers:{
+            "Authorization": token,
+          }
+        }) // GET post_date一覧取得
+        .then((response) => {
+          store.commit("setDrfResponcePostDate", response.data);
+        })
         .catch((error) => console.log(error));
-
-
-//      await axios
-//        .get("http://127.0.0.1:8000/api/post_date", {
-//          data: {},
-//          "Authorization": token,
-//        }) // GET post_date一覧取得
-//        .then((response) =>
-//          store.commit("setDrfResponcePostDate", response.data)
-//        )
-//        .catch((error) => console.log(error));
     };
 
     const transitionDetail = (index: string): void => {

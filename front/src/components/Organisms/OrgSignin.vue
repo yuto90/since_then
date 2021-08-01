@@ -79,7 +79,6 @@ export default defineComponent({
           password: state.displayInputPass,
         })
         .then((response) => {
-          console.log(response.data["token"]);
           store.commit("setToken", "JWT " + response.data["token"]);
         })
         .catch((error) => console.log(error));
