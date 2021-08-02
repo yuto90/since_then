@@ -1,5 +1,6 @@
 import { InjectionKey } from "vue";
 import { createStore, Store } from "vuex";
+import createPersistedState from 'vuex-persistedstate'
 
 export interface State {
   inputDate: string;
@@ -12,6 +13,7 @@ export interface State {
 export const key: InjectionKey<Store<State>> = Symbol(); // Stateのキーと型の一覧
 
 export const store = createStore<State>({
+  plugins: [createPersistedState({storage: window.sessionStorage})], // ブラウザのセッションにstoreに保存
   state: {
     inputDate: "",
     inputTitle: "",
