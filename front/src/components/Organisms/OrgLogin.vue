@@ -61,6 +61,7 @@ export default defineComponent({
         })
         .then((response) => {
           store.commit("setToken", "JWT " + response.data["token"]);
+          console.log(response.data);
         })
         .catch((error) => console.log(error));
 

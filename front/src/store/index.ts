@@ -12,15 +12,20 @@ export interface State {
 
 export const key: InjectionKey<Store<State>> = Symbol(); // Stateのキーと型の一覧
 
-export const store = createStore<State>({
-  plugins: [createPersistedState({ storage: window.sessionStorage })], // ブラウザのセッションにstoreに保存
-  state: {
+// 初期データを変数に格納
+const getDefaultState = () => {
+  return {
     inputDate: "",
     inputTitle: "",
     inputMemo: "",
     drfPostDate: [],
     token: "",
-  },
+  };
+};
+
+export const store = createStore<State>({
+  plugins: [createPersistedState({ storage: window.sessionStorage })], // ブラウザのセッションにstoreに保存
+  state: getDefaultState,
   mutations: {
     setDate(state, payload) {
       state.inputDate = payload;
@@ -36,6 +41,11 @@ export const store = createStore<State>({
     },
     setToken(state, payload) {
       state.token = payload;
+    },
+    // vuex-persistedstateで永続化したstateデータを初期化(ログアウト)
+    jwtReset(state) {
+      // stateに初期データを上書きしてログアウト
+      Object.assign(state, getDefaultState());
     },
   },
   getters: {

@@ -9,10 +9,16 @@
           >
             Since-Then
           </router-link>
-          <span class="subtitle">「あれから」を記録するアプリ</span>
+          <span class="subtitle">記念日を記録するアプリ</span>
         </h1>
       </div>
       <nav class="header-nav">
+        <!--todo そのうちマイページにボタンを移動させる -->
+        <div class="header-nav-item">
+          <router-link :to="{ name: 'Home' }">
+            <AtomButton @click="jwtLogout" :text="'ログアウト'" />
+          </router-link>
+        </div>
         <div class="header-nav-item">
           <router-link :to="{ name: 'Signin' }">
             <AtomButton :text="'新規登録'" />
@@ -34,6 +40,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useStore } from "vuex";
+import { key } from "@/store";
 
 import AtomButton from "@/components/Atoms/AtomButton.vue";
 
@@ -42,7 +50,19 @@ export default defineComponent({
   components: {
     AtomButton,
   },
-  //setup(props, context) {},
+  setup() {
+    // storeに接続
+    const store = useStore(key);
+
+    // ログアウト処理　
+    const jwtLogout = () => {
+      store.commit("jwtReset");
+    };
+
+    return {
+      jwtLogout,
+    };
+  },
 });
 </script>
 
